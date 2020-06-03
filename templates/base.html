@@ -19,13 +19,12 @@
         <title>Automated Testing</title>
         <meta name="description" content="Automated Testing articles">
     {% endblock %}
-    {% block css %}
-    {% endblock %}
+    {% block css %}  {% endblock %}
 </head>
 <body>
 
 <div class="mx-auto">
-    <header class="header mb-auto">
+    <header class="header">
         <div class="inner text-center">
             {% with path=request.path %}
                 <nav class="nav nav-header justify-content-center mt-4">
@@ -33,15 +32,18 @@
                     <a class="nav-link {% if path == '/register/' %}active{% endif %}" href="{% url 'register' %}">REGISTER</a>
                 </nav>
             {% endwith %}
-            <div class="mb-5">
-                {% block page_desc %} {% endblock %}
-            </div>
+            {% block page_desc %} {% endblock %}
         </div>
     </header>
 
+    <div class="row justify-content-center">
+        <div class="col-11 col-md-8 col-lg-6">
+            {% block messages %} {% endblock %}
+        </div>
+    </div>
+
     <div class="main row justify-content-center">
         <div class="main col-11 col-md-8 col-lg-6">
-            {% block messages %} {% endblock %}
             <div id="content">{% block content %} {% endblock %}</div>
         </div>
     </div>

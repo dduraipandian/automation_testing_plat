@@ -11,3 +11,7 @@ a:focus,
 a:hover {
     color: #fff;
 }
+
+.header.register{
+    margin-bottom: 6rem !important;
+}

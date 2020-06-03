@@ -5,9 +5,22 @@
 .form-control:-ms-input-placeholder { color: #adaaaa; }  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { color: #adaaaa; }  /* Microsoft Edge */
 
+@font-face {
+  font-family: Lato;
+  src: url(/static/font/nunito/Nunito-Regular.ttf) format("truetype"),
+    url(/static/font/nunito/Nunito-Black.ttf) format("truetype"),
+    url(/static/font/nunito/Nunito-Light.ttf) format("truetype"),
+    url(/static/font/nunito/Nunito-SemiBold.ttf) format("truetype"),
+    url(/static/font/nunito/Nunito-Bold.ttf) format("truetype");
+}
+
 html {
     height: 100%;
     width: 100%;
+}
+
+html * {
+    font-family: Nunito, sans-serif;
 }
 
 .text-center {
@@ -75,8 +88,8 @@ a:hover {
 * Header
 */
 .header {
-    height: calc(100vh - 70%);
     padding-top: 20px;
+    margin-bottom: 6rem !important;
 }
 
 .header-brand {
@@ -241,4 +254,8 @@ footer .site{
 .action-link{
     font-weight: bold;
     text-decoration: underline;
+}
+
+.action-header{
+    font-weight: bold;
 }
