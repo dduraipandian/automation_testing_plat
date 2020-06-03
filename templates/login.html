@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+    <title> Automated Testing - Login </title>
+    <meta name="description" content="login page to view automated testing articles.">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'auth.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    {% if messages %}
+        <div id="messages" class="pb-3 row justify-content-center">
+            {% for message in messages %}
+                <div class="col-11 col-sm-8 alert alert-{{ message.tags }} {% if not blocked %} alert-dismissible {% endif %} fade in show" role="alert">
+                    <span style="min-width: 17rem; display: inline-block; max-width: 23rem;">{{ message }}</span>
+                    {% if not blocked %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="row justify-content-center" style="min-height: 33rem">
+        <div id="contact_input" class="col-12 px-4">
+            <form id="contact-form" class="row justify-content-center" method="POST" action="/login/"> {% csrf_token %}
+                <div class="col-12 px-4 mb-5 text-center">
+                    <img class="mx-auto" src="{% static 'header.png' %}" style="width: 250px;" alt="header">
+                </div>
+                <div class="form-group col-12 col-sm-9 col-lg-8">
+                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Registered Email"/>
+                </div>
+                <div class="form-group col-12 col-sm-9 col-lg-8">
+                    <input type="Password" name="password" class="form-control" id="password" placeholder="Password"/>
+                </div>
+                <div class="form-group box-shadow-light mt-4 col-12 col-sm-9 col-lg-8 text-center">
+                    <small class="form-text help text-white mb-2"><a href="/register/"
+                                                                     class="action-link">Register</a>, if you do not have an account.</small>
+                    <button class="btn btn-custom btn-sm w-25 submit">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

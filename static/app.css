@@ -1,0 +1,244 @@
+* { padding: 0; margin: 0; }
+.form-control::-webkit-input-placeholder { color: #adaaaa; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: #adaaaa; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: #adaaaa; }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: #adaaaa; }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: #adaaaa; }  /* Microsoft Edge */
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center!important;
+}
+body {
+    min-height: 100% !important;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    // background-color: #012c40;
+}
+
+.navbar{
+    height: fit-content;
+}
+
+.navbar-brand a{
+    text-decoration: none;
+}
+
+.brand-name{
+    font-size: 1.75rem;
+    // margin-right: 10rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav-link{
+    color: #0591b8;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.nav-link .active {
+    border-bottom-color: #0591b8;;
+}
+
+/*
+* Globals
+*/
+
+/* Links */
+a,
+a:focus,
+a:hover {
+    color: black;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: .05rem solid #fff;
+}
+
+
+/*
+* Header
+*/
+.header {
+    height: calc(100vh - 70%);
+    padding-top: 20px;
+}
+
+.header-brand {
+    margin-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.header-brand a{
+    text-decoration: none;
+}
+
+.nav-header .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-header .nav-link:hover,
+.nav-header .nav-link:focus {
+    border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-header .nav-link + .nav-link {
+    margin-left: 1rem;
+}
+
+.nav-header .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+
+/*
+* Footer
+*/
+footer {
+    color: rgba(255, 255, 255, .5);
+    min-height: 6rem;
+}
+
+.main{
+    min-height: 28rem;
+    height: calc(100vh - 25%);
+    margin: 0;
+}
+
+footer{
+    height: calc(100vh - 91%);
+    display: table;
+    vertical-align: middle;
+}
+
+footer .site{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .brand-name {
+        font-size: 1.25rem;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+    .myfilespace{
+        width: 55px;
+        height: 55px;
+    }
+
+    .g-recaptcha > div{
+        float: none !important;
+        transform:scale(0.75);-webkit-transform:scale(0.75);transform-origin:0 0;-webkit-transform-origin:0 0;
+    }
+
+    .verify-home-form .g-recaptcha > div{
+        margin-left: 2.3rem;
+    }
+
+    .verify-home-form{
+        float: none !important;
+    }
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.g-recaptcha > div{
+    width: 100% !important;
+}
+
+.alert-error, .error {
+    border: 1px solid rgb(242, 242, 242) !important;
+    background-color: #f35664;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 5px !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.alert-success, .success {
+    color: #155724;
+    border-color: #c3e6cb;
+    border: 1px solid rgb(242, 242, 242) !important;
+    background-color: #8bda9e;
+
+    padding: 1rem 1.5rem;
+    border-radius: 5px !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.page_desc{
+    color: rgba(255, 255, 255, .5);
+}
+
+.btn-custom{
+    background: rgb(124, 16, 65);
+    border: rgb(124, 16, 65);
+}
+
+.btn-custom:hover {
+    color: white;
+    background: rgb(124, 16, 65);
+    border: rgb(124, 16, 65);
+}
+
+.btn-custom{
+    color: white;
+    background: rgb(124, 16, 65);
+    border: rgb(124, 16, 65);
+}
+
+
+.submit{
+    box-shadow: 0 8px 6px -6px black;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    font-size: .75rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    height: 2.3rem;
+}
+
+.action-link{
+    font-weight: bold;
+    text-decoration: underline;
+}
