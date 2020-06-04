@@ -53,7 +53,7 @@ def validate_user_password(password1, password2):
         try:
             validate_password(password1)
         except ValidationError as e:
-            error_message = "\n".join([m.message for m in e.error_list])
+            error_message = "\n".join([m for m in e.messages])
             valid, msg = False, error_message
         else:
             valid, msg = True, None
