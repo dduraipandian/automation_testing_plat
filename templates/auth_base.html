@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="mx-auto body-block">
+        {% if not user.is_authenticated %}
+            <header class="header">
+            <div class="inner text-center">
+                {% with path=request.path %}
+                    <nav class="nav nav-header justify-content-center mt-4">
+                        <a class="nav-link {% if path == '/login/' %}active{% endif %}" href="{% url 'login' %}">LOGIN</a>
+                        <a class="nav-link {% if path == '/register/' %}active{% endif %}" href="{% url 'register' %}">REGISTER</a>
+                    </nav>
+                {% endwith %}
+                {% block page_desc %} {% endblock %}
+            </div>
+        </header>
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-8 col-lg-6">
+                {% block messages %} {% endblock %}
+            </div>
+        </div>
+
+        <div class="main row justify-content-center">
+            <div class="main col-11 col-md-8 col-lg-6">
+                <div id="content">{% block content %} {% endblock %}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
