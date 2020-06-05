@@ -12,6 +12,31 @@
 
 {% block body %}
     {% if user.is_authenticated %}
+        <div class="row justify-content-center justify-content-sm-end m-0 px-5">
+            <div class="col-auto p-0 text-center">
+                <div class="btn btn-group p-0" role="group" aria-label="Basic example"
+                     style="margin-top: 10%; border: 2px solid white;">
+                    <button type="button" class="btn btn-light btn-custom" onclick="window.location.href='/user/user_info/'">
+                        <svg class="bi bi-person-fill" style="vertical-align: middle;" width="1.3rem" height="1.3rem"
+                             viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        <span> {{ request.user.name }} </span></button>
+                    <button type="button" class="btn btn-light btn-custom" style="border-left:3px solid white"
+                            onclick="window.location.href='/logout/'">
+                        <svg class="bi bi-box-arrow-right-fill" width="1.3rem" height="1.3rem"
+                             style="vertical-align: middle;" viewBox="0 0 16 16" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
+                        </svg></button>
+                </div>
+            </div>
+        </div>
         {% block content %} {% endblock %}
     {% else %}
         <div id="messages" class="pt-5 row justify-content-center">

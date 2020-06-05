@@ -86,3 +86,71 @@ def register(request):
         response = render(request, 'register.html')
 
     return response
+
+
+@require_http_methods(['GET', 'POST'])
+@login_required(login_url='/login/')
+def user_info(request):
+    template = 'user_details.html'
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user = request.user
+        user.name = name
+        try:
+            user.save()
+        except Exception as e:
+            messages.error(request, 'Not able to update the information.')
+            response = render(request, template)
+        else:
+            messages.success(request, 'Updated successfully.')
+            response = render(request, template)
+    elif request.method == 'GET' and request.user.is_authenticated:
+        response = render(request, template)
+    else:
+        response = redirect("/")
+
+    return response
+
+
+@login_required(login_url='/login/')
+@require_http_methods(['GET', 'POST'])
+def change_password(request):
+    template = 'user_details.html'
+    if request.method == 'POST':
+        try:
+            user = request.user
+            current_password = request.POST['password']
+            password1 = request.POST['password1']
+            password2 = request.POST['password2']
+
+            validated_password = user.check_password(current_password)
+
+            if not validated_password:
+                messages.error(request, 'Current password is incorrect.!')
+                response = render(request, template)
+                return response
+
+            # Password validation
+            valid, err_response = validate_user_password(password1, password2)
+            if not valid:
+                messages.error(request, err_response)
+                response = render(request, template)
+                return response
+            else:
+                password = password1
+
+            user.set_password(password)
+            user.save()
+            logout(request)
+        except Exception as e:
+            messages.error(request, 'Not able to update the information.')
+            response = render(request, template)
+        else:
+            messages.success(request, 'Password updated successfully. Please re-login.')
+            response = redirect("/")
+    elif request.method == 'GET' and request.user.is_authenticated:
+        response = render(request, template)
+    else:
+        response = redirect("/")
+
+    return response

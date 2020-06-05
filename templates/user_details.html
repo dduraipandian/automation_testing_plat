@@ -1,66 +1,110 @@
-{% extends 'base.html' %}
+{% extends 'home_base.html' %}
 {% load static %}
 {% block meta %}
     <title> Testarea Automata - Home </title>
-    <meta name="description" content="Testarea Automata home page">
+    <meta name="description" content="Testarea Automata user profile">
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'home.css' %}"/>
+    <link rel="stylesheet" href="{% static 'user.css' %}"/>
 {% endblock %}
 
-{% block body %}
-    <div class="body-block-img"></div>
-    <div class="body-block">
-        <div class="row justify-content-center justify-content-md-end m-0">
-            <div class="col col-md-5 col-lg-4 p-0 text-center">
-                <div class="btn btn-group p-0" role="group" aria-label="Basic example"
-                     style="margin-top: 10%; border: 2px solid white;">
-                    <button type="button" class="btn btn-light btn-custom">
-                        <svg class="bi bi-person-fill" style="vertical-align: middle;" width="1.3rem" height="1.3rem"
-                             viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg>
-                        <span> {{ request.user.name }} </span></button>
-                    <button type="button" class="btn btn-light btn-custom" style="border-left:3px solid white"
-                            onclick="window.location.href='/logout/'">
-                        <svg class="bi bi-box-arrow-right-fill" width="1.3rem" height="1.3rem"
-                             style="vertical-align: middle;" viewBox="0 0 16 16" fill="currentColor"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
-                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-                            <path fill-rule="evenodd"
-                                  d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
-                        </svg></button>
+{% block content %}
+    {% with path=request.path %}
+        <div class="row justify-content-between user-details container">
+            <div class="col-4 col-lg-3">
+                <div class="list-group list-group-sm shadow-sm">
+                    <a class="list-group-item {% if '/' == path %} info-active {% endif %}" href="{% url 'home' %}">
+                        <svg class="bi bi-house-fill" style="vertical-align: middle;" width="1.3rem" height="1.3rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+</svg> <span class="ml-2 lable">Home</span>
+                    </a>
+                    <a class="list-group-item {% if '/user_info/' in path %} info-active {% endif %}" href="{% url 'user_info' %}">
+                        <svg class="bi bi-info-circle-fill" style="vertical-align: middle;" width="1.3rem" height="1.3rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg> <span class="ml-2 lable"> User Info </span></a>
+                    <a class="list-group-item {% if '/change_password/' in path %} info-active {% endif %}" href="{% url 'change_password' %}">
+                        <svg class="bi bi-shield-lock-fill" style="vertical-align: middle;" width="1.3rem" height="1.3rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M5.187 1.025C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815zm3.328 6.884a1.5 1.5 0 1 0-1.06-.011.5.5 0 0 0-.044.136l-.333 2a.5.5 0 0 0 .493.582h.835a.5.5 0 0 0 .493-.585l-.347-2a.5.5 0 0 0-.037-.122z"/>
+                        </svg> <span class="ml-2 lable"> Change password </span> </a>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center justify-content-md-end all-articles">
-            <div class="col-12 col-md-5 col-lg-6 row m-0 p-0 text-center article-text justify-content-center justify-content-md-end">
-                <div class="col-11 col-lg-5 card article-card">
-                  <div class="card-body">
-                    Introducere in testare
-                  </div>
+            <div class="col-8 col-lg-8">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        {% if messages %}
+                            <div id="messages" class="pb-3 px-4 row justify-content-start">
+                                {% for message in messages %}
+                                    <div class="col-12 col-sm-9 col-lg-8 alert alert-{{ message.tags }} {% if not blocked %} alert-dismissible {% endif %} fade in show " role="alert">
+                                        <span style="min-width: 17rem; display: inline-block; max-width: 23rem;">{{ message }}</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-11 col-lg-5 card article-card">
-                  <div class="card-body">
-                    Principii ale testării (Mayers)
-                  </div>
-                </div>
-                <div class="col-11 col-lg-5 card article-card">
-                  <div class="card-body">
-                    Testarea automata vs. testarea manuala
-                  </div>
-                </div>
-                <div class="col-11 col-lg-5 card article-card">
-                  <div class="card-body article-body">
-                    <span class="article-title"> Testarea automata</span>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+                {% if '/user_info/' in path %}
+                    <div class="row justify-content-center" style="min-height: 33rem">
+                        <div id="info_input" class="col-12 px-4">
+                            <form id="info-form" class="row justify-content-start" method="POST" action="{% url 'user_info' %}"> {% csrf_token %}
+                                <div class="form-group col-12 col-sm-9 col-lg-8">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email"
+                                            value="{{ user.email }}"
+                                            disabled/>
+                                </div>
+                                <div class="form-group col-12 col-sm-9 col-lg-8">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Name"
+                                           value="{{ user.name }}"
+                                           oninvalid="this.setCustomValidity('User name is required.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required/>
+                                </div>
+                                <div class="form-group box-shadow-light mt-4 col-12 col-sm-9 col-lg-8 text-center">
+                                    <button class="btn btn-custom btn-sm w-25 submit float-right">UPDATE</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% elif '/change_password/' in path %}
+                    <div class="row justify-content-center" style="min-height: 33rem">
+                        <div id="change_password_form" class="col-12 px-4">
+                            <form id="change-pass-form" class="row justify-content-start" method="POST" action="{% url 'change_password' %}"> {% csrf_token %}
+                                <div class="form-group col-12 col-sm-9 col-lg-8">
+                                    <label for="password">Current password</label>
+                                    <input type="Password" name="password" class="form-control" id="password" placeholder="Password"
+                                           oninvalid="this.setCustomValidity('Password is required.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required/>
+                                </div>
+                                <div class="form-group col-12 col-sm-9 col-lg-8">
+                                    <label for="password1">New password</label>
+                                    <input type="Password" name="password1" class="form-control" id="password1" placeholder="New Password"
+                                           oninvalid="this.setCustomValidity('Password is required.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required/>
+                                </div>
+                                <div class="form-group col-12 col-sm-9 col-lg-8">
+                                    <label for="password2">Re-Enter new password</label>
+                                    <input type="Password" name="password2" class="form-control" id="password2" placeholder="Re-Enter new password"
+                                           oninvalid="this.setCustomValidity('Password is required.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required/>
+                                </div>
+                                <div class="form-group box-shadow-light mt-4 col-12 col-sm-9 col-lg-8 text-center">
+                                    <button class="btn btn-custom btn-sm w-50 submit float-right">CHANGE PASSWORD</button>
+                                </div>
+                            </form>
+                        </div>
+    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endwith %}
 {% endblock %}
