@@ -1,7 +1,7 @@
 <div class="row justify-content-center
-{% if request.path == '/admin/article/' or request.path|slice:':9' == '/article/' %} justify-content-sm-between {% else %} justify-content-sm-end {% endif %} m-0 px-5 nav"
+{% if '/admin/article/' in request.path or request.path|slice:':9' == '/article/' %} justify-content-sm-between {% else %} justify-content-sm-end {% endif %} m-0 px-5 nav"
     style="padding-top: 3rem;">
-        {% if request.path == '/admin/article/' or request.path|slice:":9" == '/article/' %}
+        {% if '/admin/article/' in request.path or request.path|slice:":9" == '/article/' %}
         <div class="col-auto p-0 text-center">
             <div class="btn btn-group p-0" role="group" aria-label="Basic example"
                  style=" border: 2px solid white;">
