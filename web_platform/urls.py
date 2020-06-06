@@ -21,14 +21,17 @@ from django.conf import settings
 from django.views.static import serve
 
 from users.views import home, login, register, logout
+from automated_testing.views import get_article
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('webadmin/', admin.site.urls),
     path('', home, name='home'),
     path('login/', login, name='login'),
     path('register/', register, name='register'),
     path('logout/', logout, name='logout'),
     path('user/', include('users.urls'), name='users'),
+    path('admin/article/', include('automated_testing.urls'), name='articles'),
+    path('article/<slug:title>/', get_article , name='article'),
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,3 @@
-from django.views.generic import TemplateView
 from django.urls import path
 from users.views import change_password, user_info
 

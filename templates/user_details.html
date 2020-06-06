@@ -1,4 +1,4 @@
-{% extends 'home_base.html' %}
+{% extends 'base/user_base.html' %}
 {% load static %}
 {% block meta %}
     <title> Testarea Automata - Home </title>
@@ -36,7 +36,7 @@
                         {% if messages %}
                             <div id="messages" class="pb-3 px-4 row justify-content-start">
                                 {% for message in messages %}
-                                    <div class="col-12 col-sm-9 col-lg-8 alert alert-{{ message.tags }} {% if not blocked %} alert-dismissible {% endif %} fade in show " role="alert">
+                                    <div class="col-12 col-sm-9 col-lg-8 alert alert-{{ message.tags }} alert-dismissible fade in show " role="alert">
                                         <span style="min-width: 17rem; display: inline-block; max-width: 23rem;">{{ message }}</span>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -49,60 +49,9 @@
                 </div>
 
                 {% if '/user_info/' in path %}
-                    <div class="row justify-content-center" style="min-height: 33rem">
-                        <div id="info_input" class="col-12 px-4">
-                            <form id="info-form" class="row justify-content-start" method="POST" action="{% url 'user_info' %}"> {% csrf_token %}
-                                <div class="form-group col-12 col-sm-9 col-lg-8">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email"
-                                            value="{{ user.email }}"
-                                            disabled/>
-                                </div>
-                                <div class="form-group col-12 col-sm-9 col-lg-8">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Name"
-                                           value="{{ user.name }}"
-                                           oninvalid="this.setCustomValidity('User name is required.')"
-                                           oninput="this.setCustomValidity('')"
-                                           required/>
-                                </div>
-                                <div class="form-group box-shadow-light mt-4 col-12 col-sm-9 col-lg-8 text-center">
-                                    <button class="btn btn-custom btn-sm w-25 submit float-right">UPDATE</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    {% include 'components/user_info_form.html' %}
                 {% elif '/change_password/' in path %}
-                    <div class="row justify-content-center" style="min-height: 33rem">
-                        <div id="change_password_form" class="col-12 px-4">
-                            <form id="change-pass-form" class="row justify-content-start" method="POST" action="{% url 'change_password' %}"> {% csrf_token %}
-                                <div class="form-group col-12 col-sm-9 col-lg-8">
-                                    <label for="password">Current password</label>
-                                    <input type="Password" name="password" class="form-control" id="password" placeholder="Password"
-                                           oninvalid="this.setCustomValidity('Password is required.')"
-                                           oninput="this.setCustomValidity('')"
-                                           required/>
-                                </div>
-                                <div class="form-group col-12 col-sm-9 col-lg-8">
-                                    <label for="password1">New password</label>
-                                    <input type="Password" name="password1" class="form-control" id="password1" placeholder="New Password"
-                                           oninvalid="this.setCustomValidity('Password is required.')"
-                                           oninput="this.setCustomValidity('')"
-                                           required/>
-                                </div>
-                                <div class="form-group col-12 col-sm-9 col-lg-8">
-                                    <label for="password2">Re-Enter new password</label>
-                                    <input type="Password" name="password2" class="form-control" id="password2" placeholder="Re-Enter new password"
-                                           oninvalid="this.setCustomValidity('Password is required.')"
-                                           oninput="this.setCustomValidity('')"
-                                           required/>
-                                </div>
-                                <div class="form-group box-shadow-light mt-4 col-12 col-sm-9 col-lg-8 text-center">
-                                    <button class="btn btn-custom btn-sm w-50 submit float-right">CHANGE PASSWORD</button>
-                                </div>
-                            </form>
-                        </div>
-    </div>
+                    {% include 'components/change_password_form.html' %}
                 {% endif %}
             </div>
         </div>

@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'article.css' %}"/>
+<div style="padding: 40px; max-width:100%; min-width:550px; max-height:450px; min-height:450px; overflow-y: scroll">
+    {% include 'components/article_content.html' with article=article %}
+</div>
+
+<div class="row justify-content-between mt-5">
+    <div class="form-group box-shadow-light col-12 text-center">
+        <a class="btn btn-custom btn-sm submit float-right text-white ml-3" style="display: table;"
+           href="{% url 'article_final' article_id=article.id %}">
+            <span style="display: table-cell; vertical-align: middle;">NEXT</span>
+            <svg class="bi bi-arrow-right-short" style="display: table-cell; margin-top: 4px; vertical-align: middle; float: right" width="1.3rem" height="1.3rem"
+                      viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
+</svg>
+        </a>
+        <a class="btn btn-custom btn-sm submit float-right text-white" style="display: table;"
+           href="{% url 'article_content' article_id=article.id %}">
+            <svg class="bi bi-arrow-left-short" style="display: table-cell;margin-top: 4px;vertical-align: middle;" width="1.3rem" height="1.3rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 0 1 0 .708L5.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+              <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h6.5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            <span style="display: table-cell; vertical-align: middle;">PREVIOUS</span> </a>
+    </div>
+</div>

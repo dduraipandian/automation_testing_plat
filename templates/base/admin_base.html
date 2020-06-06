@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title> Testarea Automata - Home </title>
+    <meta name="description" content="Testarea Automata admin home page">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'admin.css' %}"/>
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            {% include 'components/nav_comp.html' %}
+            {% block content %} {% endblock %}
+        {% else %}
+            <div id="messages" class="pt-5 row justify-content-center">
+                <div class="col-11 col-sm-8 alert alert-error fade in show" role="alert">
+                    <span style="min-width: 17rem; display: inline-block; max-width: 23rem;"> Please <a href="/login/" class="action-link">login</a> as admin to access this page </span>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <div id="messages" class="pt-5 row justify-content-center">
+            <div class="col-11 col-sm-8 alert alert-error alert-dismissible fade in show" role="alert">
+                <span style="min-width: 17rem; display: inline-block; max-width: 23rem;"> Please <a href="/login/" class="action-link">login</a> to access this page </span>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+<div class="row justify-content-center" style="min-height: 39rem">
+    <div class="col-11 mx-0 px-4 py-3 my-3 border rounded shadow-sm">
+        <div class="row">
+            <ul class="nav nav-tabs w-100" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin/article/new/' == path  or '/admin/article/new/article_info/' in path %} active-tab {% else %} disabled {% endif %}"
+                       data-toggle="pill" href="#article_info" role="tab"> Article Info </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin/article/new/article_content/' in path %} active-tab {% else %} disabled {% endif %}"
+                       data-toggle="pill" href="#article_content" role="tab"> Article Content </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin/article/new/article_preview/' in path %} active-tab {% else %} disabled {% endif %}"
+                       data-toggle="pill" href="#article_toc" role="tab"> Article Preview </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin/article/new/article_final/' in path %} active-tab {% else %} disabled {% endif %}"
+                       data-toggle="pill"
+                       href="#article_final" tabindex="-1" aria-disabled="true">Final Step</a>
+                </li>
+            </ul>
+            <div class="tab-content w-100" id="articles_tab">
+                {% if '/admin/article/new/' == path or '/admin/article/new/article_info/' in path %}
+                    <div class="tab-pane fade {% if '/admin/article/new/' == path or '/admin/article/new/article_info/' in path %} show active {% endif %}"
+                         id="article_info" role="tabpanel" aria-labelledby="home-tab">
+                        {% include 'components/article_info_form.html' %}
+                    </div>
+                {% endif %}
+                {% if '/admin/article/new/article_content/' in path %}
+                    <div class="tab-pane fade {% if '/admin/article/new/article_content/' in path %} show active {% endif %}"
+                         id="article_content" role="tabpanel" aria-labelledby="profile-tab">
+                        {% include 'components/article_content_form.html' %}
+                    </div>
+                {% endif %}
+                {% if '/admin/article/new/article_preview/' in path %}
+                    <div class="tab-pane fade {% if '/admin/article/new/article_preview/' in path %} show active {% endif %}" id="article_toc" role="tabpanel" aria-labelledby="contact-tab">
+                        {% include 'components/article_preview.html' %}
+                    </div>
+                {% endif %}
+                {% if '/admin/article/new/article_final/' in path %}
+                    <div class="tab-pane fade {% if '/admin/article/new/article_final/' in path %} show active {% endif %}" id="article_final" role="tabpanel" aria-labelledby="contact-tab">
+                        {% include 'components/new_article_final_step.html' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

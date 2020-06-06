@@ -5,12 +5,14 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from users.utils import validate_user_email, validate_user_password, get_user_model
+from automated_testing.views import get_all_published_articles
 
 
 @login_required()
 def home(request):
     if request.user.is_authenticated:
-        response = render(request, 'home.html')
+        articles = get_all_published_articles()
+        response = render(request, 'home.html', {'articles': articles})
     else:
         response = redirect("/login/")
     return response

@@ -1,0 +1,15 @@
+{% extends 'base/user_base.html' %}
+{% load static %}
+{% block meta %}
+    <title> Testarea Automata - Home </title>
+    <meta name="description" content="Testarea Automata - {{ article.title }}">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'user.css' %}"/>
+    <link rel="stylesheet" href="{% static 'article.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    {% include 'components/article_content.html' with article=article %}
+{% endblock %}

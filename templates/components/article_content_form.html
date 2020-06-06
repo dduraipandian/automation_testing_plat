@@ -1,0 +1,80 @@
+{% load static %}
+{% if article %}
+<form class="row justify-content-between m-0" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));"
+      method="POST" id="article-content-form"
+      action="{% url 'article_content' article_id=article.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ article.id }}"/>
+    <input type="checkbox" name="dirty" style="display: none" unchecked>
+    <div class="form-group col-12 p-0 w-100">
+        <textarea class="form-control" id="summernote" name="content"rows="20" cols="350"></textarea>
+    </div>
+    <div class="form-group box-shadow-light col-12 text-center">
+        <button type="submit" class="btn btn-custom btn-sm submit float-right ml-3">
+            <span style="vertical-align: middle;">NEXT</span> <svg class="bi bi-arrow-right-short" style="vertical-align: middle; float: right" width="1.3rem" height="1.3rem"
+                      viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
+</svg>
+        </button>
+        <a class="btn btn-custom btn-sm submit float-right text-white" style="display: table;"
+           href="{% url 'article_info' article_id=article.id %}">
+            <svg class="bi bi-arrow-left-short" style="display: table-cell;margin-top: 4px;vertical-align: middle;" width="1.3rem" height="1.3rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 0 1 0 .708L5.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+              <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h6.5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            <span style="display: table-cell; vertical-align: middle;">PREVIOUS</span> </a>
+    </div>
+</form>
+{% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+
+    <script>
+         $("#content").summernote();
+         $('#summernote').summernote({
+                height: 400,
+                toolbar: [
+                  ['style', ['style']],
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['font', ['strikethrough', 'superscript', 'subscript']],
+                  ['fontsize', ['fontsize']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['height', ['height']],
+                  ['fontname', ['fontname']],
+                  ['table', ['table']],
+                  ['insert', ['link', 'picture']],
+                  ['view', ['fullscreen', 'help']]
+                  ],
+                tableClassName: function()
+                {
+                    $(this).addClass('table table-bordered')
+                    .attr('border', 0)
+                    .css('borderCollapse', 'collapse')
+                    .css('padding-left', '0');
+
+                    $(this).find('td')
+                    .css('border', '0')
+                    .css('padding-left', '0');
+                },
+            });
+            $('#summernote').summernote('code', `{{ article.article_content.content | safe }}`);
+            $('.note-editable').css('padding', '40px');
+            $('.dropdown-toggle').dropdown();
+            $('.table-bordered').css('border', 0);
+            $('.table-bordered td').css('border', 0);
+            $('.table-bordered').css('padding-left', 0);
+            $('.table-bordered td').css('padding-left', 0);
+
+    </script>
+{% endblock %}
+{% endif %}

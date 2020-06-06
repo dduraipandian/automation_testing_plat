@@ -1,4 +1,4 @@
-{% extends 'home_base.html' %}
+{% extends 'base/user_base.html' %}
 {% load static %}
 
 {% block content %}
@@ -6,29 +6,39 @@
         <div class="col-12 col-lg-6 p-0">
             <img src="{% static 'bg.png' %}" class="bg-img">
         </div>
-        <div class="col-12 col-lg-6 p-0 article-text">
+        {% if articles %}
+            <div class="col-12 col-lg-6 p-0 article-text">
             <div class="row all-articles text-center justify-content-center">
-                <div class="col-11 col-md-5 card article-card">
-                  <div class="card-body article-body">
-                      <span class="article-title"> Introducere in testare</span>
-                  </div>
-                </div>
-                <div class="col-11 col-md-5 card article-card">
-                  <div class="card-body article-body">
-                      <span class="article-title"> Principii ale testării (Mayers)</span>
-                  </div>
-                </div>
-                <div class="col-11 col-md-5 card article-card">
-                  <div class="card-body article-body">
-                      <span class="article-title"> Testarea automata vs. testarea manuala</span>
-                  </div>
-                </div>
-                <div class="col-11 col-md-5 card article-card">
-                  <div class="card-body article-body">
-                    <span class="article-title"> Testarea automata</span>
-                  </div>
-                </div>
+                {% for article in articles %}
+                    <div class="col-11 col-md-5 card article-card"
+                         onclick ="window.location.href='{% url 'article' title=article.slug_title %}'">
+                      <div class="card-body article-body">
+                          <span class="article-title"> {{ article.title }}</span>
+                      </div>
+                    </div>
+                {% endfor %}
+<!--                <div class="col-11 col-md-5 card article-card">-->
+<!--                  <div class="card-body article-body">-->
+<!--                      <span class="article-title"> Introducere in testare</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-11 col-md-5 card article-card">-->
+<!--                  <div class="card-body article-body">-->
+<!--                      <span class="article-title"> Principii ale testării (Mayers)</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-11 col-md-5 card article-card">-->
+<!--                  <div class="card-body article-body">-->
+<!--                      <span class="article-title"> Testarea automata vs. testarea manuala</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-11 col-md-5 card article-card">-->
+<!--                  <div class="card-body article-body">-->
+<!--                    <span class="article-title"> Testarea automata</span>-->
+<!--                  </div>-->
+<!--                </div>-->
             </div>
         </div>
+        {% endif %}
     </div>
 {% endblock %}

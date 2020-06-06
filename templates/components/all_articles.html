@@ -1,0 +1,28 @@
+<div class="row justify-content-center px-5">
+    <div class="col-12">
+        <table class="table table-hover px-5 shadow-sm">
+            <tr style="cursor: none">
+                <th>No.</th>
+                <th>Article Title</th>
+                <th>Heading</th>
+                <th>Status</th>
+            </tr>
+            {% for article in articles%}
+              <tr ondblclick="window.location.href='/admin/article/new/article_info/{{ article.id }}/'">
+                  <td>{{ article.id }}</td>
+                  <td>{{ article.title }}</td>
+                  {% if article.header_choice %}
+                    <td>{{ article.header_choice }}</td>
+                  {% else %}
+                    <td>H3</td>
+                  {% endif %}
+                  {% if article.status == 'PUBLISHED' %}
+                    <td><small class="btn btn-sm btn-success article-status"> {{ article.status }} </small></td>
+                  {% else %}
+                    <td><small class="btn btn-sm btn-warning article-status"> {{ article.status }} </small></td>
+                  {% endif %}
+              </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

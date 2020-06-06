@@ -1,0 +1,55 @@
+<div class="row justify-content-center m-5">
+    <div id="contact_input" class="col-9 px-4 m-5">
+        <form id="contact-form" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));" class="row justify-content-between" method="POST" action="/admin/article/new/article_info/"> {% csrf_token %}
+            <input type="hidden" name="id" value="{{ article.id }}"/>
+            <input type="checkbox" name="dirty" style="display: none" unchecked>
+            <div class="form-group col-12 col-sm-auto">
+                <label for="article_title">Article Title</label>
+                <input type="text" name="title" class="form-control article-form-input"
+                       id="article_title" placeholder="Article Title"
+                       {% if article %}
+                        value="{{ article.title }}"
+                       {% endif %}
+                       oninvalid="this.setCustomValidity('Article title is required.')"
+                       oninput="this.setCustomValidity('')"
+                       required/>
+            </div>
+            <div class="form-group col-12 col-sm-auto">
+                <label for="article_author">Author</label>
+                <input type="text" name="title" class="form-control article-form-input"
+                       id="article_author" placeholder="Article Title"
+                       {% if article %}
+                        value="{{ article.author.name }}"
+                       {% else %}
+                        value="{{ user.name }}"
+                       {% endif %}
+                       disabled/>
+            </div>
+            <div class="form-group col-12 col-sm-auto">
+                <label for="article_heading">Heading for TOC</label>
+                <div class="article-form-input">
+                    {% with header=article.header_choice H1='H1' H2='H2' H3='H3' H4='H4' H5='H5' %}
+                        <select id="article_heading" class="form-control custom-select"
+                                name="article_heading">
+                          <option value="">Choose...</option>
+                          <option value="H1" {% if article and article.header_choice == H1 %} selected {% endif %}>H1</option>
+                          <option value="H2" {% if article and article.header_choice == H2 %} selected {% endif %}>H2</option>
+                          <option value="H3" {% if article and article.header_choice == H3 %} selected {% endif %}>H3</option>
+                          <option value="H4" {% if article and article.header_choice == H4 %} selected {% endif %}>H4</option>
+                          <option value="H5" {% if article and article.header_choice == H5 %} selected {% endif %}>H5</option>
+                        </select>
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group box-shadow-light mt-5 col-12 text-center">
+                <button class="btn btn-custom btn-sm submit float-right">
+                    <span style="vertical-align: middle;">NEXT</span> <svg class="bi bi-arrow-right-short" style="vertical-align: middle; float: right" width="1.3rem" height="1.3rem"
+                      viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
+</svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
