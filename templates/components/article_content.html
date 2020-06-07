@@ -1,7 +1,7 @@
 <div id="article" class="p-5">
     <h1 class="article-title mb-5"> {{ article.title|title }} </h1>
     {% if article and article.article_content and article.article_content.toc %}
-        <div class="article-toc text-center w-50 my-4 py-5 border shadow-sm"> {{ article.article_content.toc | safe }} </div>
+        <div class="article-toc w-50 my-4 py-5 border shadow-sm"> {{ article.article_content.toc | safe }} </div>
     {% endif %}
     {% if article.article_content.content %}
         <div class="article_content">{{ article.article_content.content |safe }}</div>

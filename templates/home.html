@@ -8,7 +8,7 @@
         </div>
         {% if articles %}
             <div class="col-12 col-lg-6 p-0 article-text">
-            <div class="row all-articles text-center justify-content-center">
+            <div class="row all-articles text-center justify-content-center justify-content-md-between">
                 {% for article in articles %}
                     <div class="col-11 col-md-5 card article-card"
                          onclick ="window.location.href='{% url 'article' title=article.slug_title %}'">

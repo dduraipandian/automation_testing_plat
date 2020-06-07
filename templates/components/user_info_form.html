@@ -1,6 +1,6 @@
 <div class="row justify-content-center" style="min-height: 33rem">
     <div id="info_input" class="col-12 px-4">
-        <form id="info-form" class="row justify-content-start" method="POST" action="{% url 'user_info' %}">
+        <form autocomplete="off"id="info-form" class="row justify-content-start" method="POST" action="{% url 'user_info' %}">
             {% csrf_token %}
             <div class="form-group col-12 col-sm-9 col-lg-8">
                 <label for="inputEmail">Email</label>

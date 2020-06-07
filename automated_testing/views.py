@@ -176,6 +176,7 @@ def article_final(request, article_id=None):
     return response
 
 
+@staff_member_required(login_url='/login/')
 @login_required(login_url='/login/')
 @require_http_methods(['GET'])
 def get_article(request, title):
@@ -187,4 +188,30 @@ def get_article(request, title):
     else:
         messages.warning(request, "Request article is not found.!")
         response = render(request, template)
+    return response
+
+
+@staff_member_required(login_url='/login/')
+@login_required(login_url='/login/')
+@require_http_methods(['POST'])
+def article_deletion(request, article_id=None):
+    template = 'article_admin.html'
+    if request.method == 'POST':
+        try:
+            data = request.POST
+            article_id = data.get('id', None) or article_id
+            article = Article.objects.get(id=article_id)
+            article.delete()
+        except Exception as e:
+            messages.error(request, 'Not able to delete article.')
+            response = render(request, template)
+        else:
+            messages.success(request, f'Article "{article.title}" is deleted.!')
+            response = HttpResponseRedirect(reverse('article_admin'))
+    elif request.method == 'GET' and request.user.is_authenticated:
+        article = get_all_articles(article_id)
+        response = render(request, template, {'article': article})
+    else:
+        response = redirect("/")
+
     return response

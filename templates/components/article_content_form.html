@@ -1,6 +1,6 @@
 {% load static %}
 {% if article %}
-<form class="row justify-content-between m-0" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));"
+<form autocomplete="off"class="row justify-content-between m-0" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));"
       method="POST" id="article-content-form"
       action="{% url 'article_content' article_id=article.id %}">
     {% csrf_token %}

@@ -21,7 +21,7 @@ from django.conf import settings
 from django.views.static import serve
 
 from users.views import home, login, register, logout
-from automated_testing.views import get_article
+from automated_testing.views import get_article, article_deletion
 
 urlpatterns = [
     path('webadmin/', admin.site.urls),

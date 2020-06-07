@@ -58,13 +58,6 @@ body {
     text-decoration: none;
 }
 
-.brand-name{
-    font-size: 1.75rem;
-    // margin-right: 10rem;
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .nav-link{
     color: #0591b8;
     font-size: 13px;
@@ -126,62 +119,17 @@ a:hover {
     border-bottom-color: #fff;
 }
 
-
-/*
-* Footer
-*/
-footer {
-    color: rgba(255, 255, 255, .5);
-    min-height: 6rem;
-}
-
 .main{
     min-height: 28rem;
     height: calc(100vh - 25%);
     margin: 0;
 }
 
-footer{
-    height: calc(100vh - 91%);
-    display: table;
-    vertical-align: middle;
-}
-
-footer .site{
-    display: table-cell;
-    vertical-align: middle;
-}
-
-
-@media only screen and (max-width: 600px) {
-    .brand-name {
-        font-size: 1.25rem;
-        margin: 0;
-        margin-bottom: 1rem;
-    }
-    .myfilespace{
-        width: 55px;
-        height: 55px;
-    }
-
-    .g-recaptcha > div{
-        float: none !important;
-        transform:scale(0.75);-webkit-transform:scale(0.75);transform-origin:0 0;-webkit-transform-origin:0 0;
-    }
-
-    .verify-home-form .g-recaptcha > div{
-        margin-left: 2.3rem;
-    }
-
-    .verify-home-form{
-        float: none !important;
-    }
-}
-
 .btn-file {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -196,10 +144,6 @@ footer .site{
     background: white;
     cursor: inherit;
     display: block;
-}
-
-.g-recaptcha > div{
-    width: 100% !important;
 }
 
 .alert-error, .error {
@@ -270,4 +214,9 @@ footer .site{
 
 input{
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.btn-custom-radius{
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
 }

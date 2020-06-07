@@ -1,7 +1,7 @@
 {% load static %}
 <div style="padding: 40px; max-height:500px; min-height:450px; overflow-y: scroll">
     {% if article and article.article_content %}
-        <form class="row m-0" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));"
+        <form autocomplete="off"class="row m-0" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));"
           method="POST" id="article-content-form"
           action="{% url 'article_final' article_id=article.id %}">
         {% csrf_token %}

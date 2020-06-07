@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 def create_super_user(*args, **options):
     print(f"\n  input with * is mandatory values...")
-    email = "admin@webplatfom.com"
+    email = "admin@webplatform.com"
     name = "admin"
     password = "P@ssword124"
 

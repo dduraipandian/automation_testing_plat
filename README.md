@@ -41,7 +41,7 @@ Run server with gunicorn to access application in http://127.0.0.1:10001/
 
 Set environment variables
 ```shell script
-(testarea_automata) $ export SECRET_KEY='anmaafhl8jpv^qpo=5c+^vhil+slb76mt6mp_(n44@n##8ch51'
+(testarea_automata) $ export SECRET_KEY='your secret key'
 (testarea_automata) $ export DJANGO_SETTINGS_MODULE=web_platform.settings.production
 ```
 

@@ -19,7 +19,7 @@ body{
     padding-left: 0;
 }
 
-.article_content ul, .article_content ol{
+#article ul, #article ol{
     margin-left: 2rem;
 }
 

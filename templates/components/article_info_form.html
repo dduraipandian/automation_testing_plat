@@ -1,6 +1,6 @@
 <div class="row justify-content-center m-5">
     <div id="contact_input" class="col-9 px-4 m-5">
-        <form id="contact-form" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));" class="row justify-content-between" method="POST" action="/admin/article/new/article_info/"> {% csrf_token %}
+        <form autocomplete="off"id="contact-form" onchange="$('#dirty').prop('checked', !$('#dirty').prop('checked'));" class="row justify-content-between" method="POST" action="/admin/article/new/article_info/"> {% csrf_token %}
             <input type="hidden" name="id" value="{{ article.id }}"/>
             <input type="checkbox" name="dirty" style="display: none" unchecked>
             <div class="form-group col-12 col-sm-auto">

@@ -12,7 +12,7 @@
                     <div id="messages" class="row justify-content-start">
                         {% for message in messages %}
                             <div class="col-12 alert alert-{{ message.tags }} fade in show mt-5" role="alert">
-                                <span style="min-width: 17rem; display: inline-block; max-width: 23rem;">{{ message }}</span>
+                                <span style="min-width: 17rem; display: inline-block; max-width: 100%;">{{ message }}</span>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -42,4 +42,20 @@
             {% include 'components/all_articles.html' with articles=articles %}
         {% endif %}
     {% endwith %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('#deleteConfirmation').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('id'); // Extract info from data-* attributes
+            var title = button.data('title'); // Extract info from data-* attributes
+            var modal = $(this);
+            var html = `<p>Please confirm to delete article <u class='text-muted'>${title}</u>?</p>
+                        <p class='text-danger'>This action is not recoverable.</p>`;
+            modal.find('.modal-body').html(html);
+            modal.find('#article_id').val(id);
+            modal.find('.submit').click(() => event.preventDefault());
+        })
+    </script>
 {% endblock %}
