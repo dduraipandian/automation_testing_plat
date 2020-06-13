@@ -176,7 +176,6 @@ def article_final(request, article_id=None):
     return response
 
 
-@staff_member_required(login_url='/login/')
 @login_required(login_url='/login/')
 @require_http_methods(['GET'])
 def get_article(request, title):
